@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.post("/create", async (req, res) => {
-    const path = req.body.path ?? generatePath(5);
+    const path = req.body.path ? req.body.path : generatePath(5);
 
     const newLink = new Link({
         path,
