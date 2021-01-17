@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Shortener</title>
+    <title>Warp</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Link Shortener</h1>
-    <form action="/create" method="post">
-        <label for="url">URL: </label>
-        <input type="url" name="url" id="url">
-        <label for="url">Path: </label>
-        <input type="text" name="path" id="path">
-        <input type="submit" value="Create Link">    
-    </form>
+    <div id="main-container">
+        <h1 id="title">Warp</h1>
+        <h2 id="prompt">Where to, captain?</h2>
+        <form action="/create" method="post">
+            <input type="url" name="url" id="url" placeholder="https://jinay.dev/">
+            <input type="submit" value="Establish Link">
+        </form>
+    </div>
 </body>
+
 </html>

@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const app = express();
 const port = process.env.PORT || 3000;
 
+const { generatePath } = require("./util");
+
 const Link = require("./model/link");
 
 mongoose.connect(process.env.MONGO_URL, {
@@ -18,8 +20,10 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.post("/create", async (req, res) => {
+    const path = req.body.path ?? generatePath(5);
+
     const newLink = new Link({
-        path: req.body.path,
+        path,
         url: req.body.url,
     });
 
