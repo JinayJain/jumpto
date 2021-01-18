@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const { URL } = require("url");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -21,16 +22,30 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.post("/create", async (req, res) => {
-    const path = req.body.path ? req.body.path : generatePath(5);
+    const path = req.body.path ? req.body.path : generatePath(6);
+    try {
+        new URL(req.body.url);
+    } catch {
+        res.status(400).send("Invalid URL provided to establish link.");
+        return;
+    }
 
-    const newLink = new Link({
+    let exists = await Link.findOne({
+        path,
+    });
+
+    if (exists) {
+        res.status(400).send("Warp has already been linked.");
+        return;
+    }
+
+    let link = new Link({
         path,
         url: req.body.url,
     });
+    await link.save();
 
-    await newLink.save();
-
-    res.send(`${req.protocol}://${req.get("host")}/${newLink.path}`);
+    res.send(`${req.protocol}://${req.get("host")}/${link.path}`);
 });
 
 app.get("/:id", async (req, res) => {
