@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warp</title>
+    <title><%= dest.path %> | Warp</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div id="main-container">
-        <h1 id="title">Warp</h1>
-        <h2 id="prompt">Where to, captain?</h2>
-        <form action="/create" method="post">
-            <input type="url" name="url" id="url" placeholder="https://jinay.dev/" autofocus>
-            <input type="text" name="path" id="path" placeholder="Custom Path (optional)">
-            <input type="submit" value="Establish Link">
-        </form>
+
+    <div id="warp-container">
+        <pre id="warp-text"></pre>
     </div>
 
     <script>
-        let warpSpeed = 0.5;
+        let warpSpeed = 2;
+        let warpUrl = '<%= dest.url %>'
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"
         integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ=="
         crossorigin="anonymous"></script>
     <script src="background.js"></script>
+    <script src="warp.js"></script>
 </body>
-
 </html>

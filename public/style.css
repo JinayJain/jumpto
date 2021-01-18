@@ -1,10 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+
+html {
+    background-color: #0c0613;
+}
 
 html,
 body {
     font-family: "Jost", sans-serif;
     color: #f7f7e0;
-    background-color: #0c0613;
     display: flex;
     height: 100%;
     align-items: center;
@@ -61,11 +65,31 @@ input[type="url"] {
     width: 100%;
     padding: 12px 24px;
     border-radius: 36px;
+    background: #f7f7e0;
+}
+
+#path {
+    font-size: 1rem;
+    padding: 8px 18px;
+    width: 40%;
 }
 
 input[type="submit"] {
     width: auto;
     padding: 4px 24px;
     background: #f7f7e0;
+    transition: 0.3s;
     border-radius: 36px;
+}
+
+input[type="submit"]:hover {
+    box-shadow: 0px 0px 4px #f7f7e0;
+}
+
+#warp-container {
+    font-family: "Space Mono", monospace;
+}
+
+#warp-text {
+    text-shadow: 0px 0px 4px #f7f7e0;
 }

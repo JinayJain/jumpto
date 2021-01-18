@@ -18,6 +18,7 @@ mongoose.connect(process.env.MONGO_URL, {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
+app.set("view engine", "ejs");
 
 app.post("/create", async (req, res) => {
     const path = req.body.path ? req.body.path : generatePath(5);
@@ -33,18 +34,20 @@ app.post("/create", async (req, res) => {
 });
 
 app.get("/:id", async (req, res) => {
-    const destination = await Link.findOne({
+    const dest = await Link.findOne({
         path: req.params.id,
     });
 
-    if (destination === null) {
+    if (dest === null) {
         res.status(404).send("URL not found");
         return;
     }
 
-    res.redirect(destination.url);
+    res.render("warp", {
+        dest,
+    });
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Warp listening at http://localhost:${port}`);
 });
